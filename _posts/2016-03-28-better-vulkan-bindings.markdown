@@ -210,8 +210,8 @@ struct ReturnResult(T)
 `   );
 ```
 
-I feel I should explain this a bit more. ReturnResult is a struct template that holds an instance of its 
-template parameter and Result (a renamed VkResult but we'll get to that later). `result` is placed after
+I feel I should explain this a bit more. `ReturnResult` is a struct template that holds an instance of its 
+template parameter and `Result` (a renamed `VkResult` but we'll get to that later). `result` is placed after
 `t` so a to not muck up the alignment of `t` and consume more memory than is needed
 . If we go `auto handle  = someFuncCall(args);` and then use `handle` one of two thing will happen. If the call succeeded then `handle` will effectively alias
 itself to `handle.t` and will continue on and behave as if it were of type `T`. However if the call 
@@ -235,7 +235,7 @@ foreach(m; __traits(allMembers, vulkan))
 ```
 
 `__traits(allMembers, vulkan)` yields a Tuple of strings.
-if we run this we get a list of all the symbols declared in the Vulkan API extensions an all.
+If we run this we get a list of all the symbols declared in the Vulkan API extensions an all.
 (You probably want to pipe this through `sort` and redirect it to a file as its rather long)
 We will use this to track our progress.
 
