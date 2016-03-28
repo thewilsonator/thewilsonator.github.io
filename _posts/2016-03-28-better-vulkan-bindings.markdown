@@ -216,7 +216,7 @@ template parameter and `Result` (a renamed `VkResult` but we'll get to that late
 . If we go `auto handle  = someFuncCall(args);` and then use `handle` one of two thing will happen. If the call succeeded then `handle` will effectively alias
 itself to `handle.t` and will continue on and behave as if it were of type `T`. However if the call 
 failed and `handle.result < 0` i.e. an error code, and then we use it is some way e.g. call 
-one of its methods it will throw, but only then. We still have time to check `instance.result` 
+one of its methods it will throw, but only then. We still have time to check `handle.result` 
 for an error condition to avoid throwing if we want.
 
 Next comes the main "loop" .Its actually unrolled at compile time because its a for each on a Tuple.
