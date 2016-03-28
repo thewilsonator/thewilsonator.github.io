@@ -31,29 +31,29 @@ While automatically generating 100% of it is nice in theory, in order to minimis
 
 But first what do I mean by an idiomatic D API?
 
-    * functions
+- functions
 
-		* replacing len/ptr pairs with slices and len*/ptr pairs to return arrays
-		* wrapping call that could fail (i.e. return a VkResult) with something that throws but only if you try to use it in an invalid state
-		* const (char)* to string and const (char*)* to string[]
-		* those that return a struct through a pointer in their last arg should return that normally
-		* basically the user shouldn't have to deal with (non-handle) pointers EVER.
+	- replacing len/ptr pairs with slices and len*/ptr pairs to return arrays
+	- wrapping call that could fail (i.e. return a VkResult) with something that throws but only if you try to use it in an invalid state
+	- const (char)* to string and const (char*)* to string[]
+	- those that return a struct through a pointer in their last arg should return that normally
+	- basically the user shouldn't have to deal with (non-handle) pointers EVER.
 
-	* enums
+- enums
 
-		* remove redundant prefix and members
-		* conform to D naming conventions
-	
-	* Handles
+	- remove redundant prefix and members
+	- conform to D naming conventions
 
-		* almost all (vkEnumerateInstance{Extension,Layer}Properties are the exceptions and they should, but they don't for whatever reason) functions take one of these as their first parameter so have them as methods
+- Handles
 
-		* Createinfo
+	- almost all (vkEnumerateInstance{Extension,Layer}Properties are the exceptions and they should, but they don't for whatever reason) functions take one of these as their first parameter so have them as methods
 
-			* nice to use constructors
-			* nest these inside their Handle
+	- Createinfo
 
-		* __ctor/__dtor => vk*{Create,Destroy}Foo
+		- nice to use constructors
+		- nest these inside their Handle
+
+	- __ctor/__dtor => vk*{Create,Destroy}Foo
 		
 There is a problem with extensions methods: namely that we have to load them into a function pointer. This wouldn't be a problem except that in vulkan you can have multiple devices, unlike gl where you can have a bunch of function pointers and populate them at load time. I suppose that you could all possible function pointers in the handle wrapper but for the sake of this article we will leave them out.
 
