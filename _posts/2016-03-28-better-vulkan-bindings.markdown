@@ -147,6 +147,7 @@ File f;			// the file we will write to
 bool _debug;	// runtime arg
 ```
 and a debugging utility function
+
 ```D
 void fwrite(int line = __LINE__, Args... )(Args args)
 {
@@ -154,6 +155,7 @@ void fwrite(int line = __LINE__, Args... )(Args args)
     f.write(args);
 }
 ```
+
 line is evaluated in the context of the caller NOT the callee (like a C macro). This allows us to keep track of which line 
 generated what. This is a HUGE sanity saver and I wish that I had this idea earlier. 
 
@@ -218,6 +220,7 @@ one of its methods it will throw, but only then. We still have time to check `in
 for an error condition to avoid throwing if we want.
 
 Next comes the main "loop" .Its actually unrolled at compile time because its a for each on a Tuple.
+
 ```D
 foreach(m; __traits(allMembers, vulkan))
 {
@@ -249,8 +252,10 @@ if (m.startsWith("PFN_vk") || m.startsWith("VK"))
 	emittedSymbols[m] = true;
 }
 ```
+
 this leaves us with enums (in the C sense), functions, structs, handles. Let's start with the enums
 first.
+
 ```D
 static if( __traits(compiles, mixin(m~"."~m.camelToUpper_ ~ "_MAX_ENUM")) || m.endsWith("Bits"))
 {
