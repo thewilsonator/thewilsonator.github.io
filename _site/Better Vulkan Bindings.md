@@ -1,12 +1,8 @@
----
-layout: post
-title:  "Generating better Vulkan bindings"
-date:   2016-03-28 19:46:13 +0800
-categories: update
----
+Generating better Vulkan bindings:
+==================================
 
 An adventure in introspective and meta-programming in D
-=======================================================
+-------------------------------------------------------
 
 Intro
 -----
