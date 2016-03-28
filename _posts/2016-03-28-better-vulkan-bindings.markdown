@@ -14,7 +14,7 @@ Intro
 With the release of the new graphics API Vulkan from Khronos I thought it would good to try and wrap my head around it. Unfortunately Vulkan is a C API, and is therefore not type safe (although waaaay better than OpenGL) and rather clunky to use. However as Vulkan is a C API, it is easily accessible in D, so we can make a 
 better API that forwards with no overhead to the C API in a type safe way that is  much cleaner and nicer to use way.
 
-I originally intended to generate a D API straight from the [spec], but I quickly came to the conclusion that 
+I originally intended to generate a D API straight from the spec, but I quickly came to the conclusion that 
 that was not a good use of my time for several reasons:
 
 	1. The spec is a massively convoluted and annoyingly inconsistent xml document (tags in weird places ect.).
