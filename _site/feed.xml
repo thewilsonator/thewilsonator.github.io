@@ -1,42 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Your awesome title</title>
-    <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+    <title>Subject to change without warning</title>
+    <description>A blog on musings about software
 </description>
     <link>http://yourdomain.com/</link>
     <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 28 Mar 2016 20:19:59 +0800</pubDate>
-    <lastBuildDate>Mon, 28 Mar 2016 20:19:59 +0800</lastBuildDate>
+    <pubDate>Tue, 29 Mar 2016 07:57:16 +0800</pubDate>
+    <lastBuildDate>Tue, 29 Mar 2016 07:57:16 +0800</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
-    
-      <item>
-        <title>Welcome to Jekyll!</title>
-        <description>&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
-
-&lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
-
-&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;Tom&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &#39;Hi, Tom&#39; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;
-
-</description>
-        <pubDate>Mon, 28 Mar 2016 19:46:13 +0800</pubDate>
-        <link>http://yourdomain.com/jekyll/update/2016/03/28/welcome-to-jekyll.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/jekyll/update/2016/03/28/welcome-to-jekyll.html</guid>
-        
-        
-        <category>jekyll</category>
-        
-        <category>update</category>
-        
-      </item>
     
       <item>
         <title>Generating better Vulkan bindings</title>
@@ -47,7 +19,7 @@
 &lt;p&gt;With the release of the new graphics API Vulkan from Khronos I thought it would good to try and wrap my head around it. Unfortunately Vulkan is a C API, and is therefore not type safe (although waaaay better than OpenGL) and rather clunky to use. However as Vulkan is a C API, it is easily accessible in D, so we can make a 
 better API that forwards with no overhead to the C API in a type safe way that is  much cleaner and nicer to use way.&lt;/p&gt;
 
-&lt;p&gt;I originally intended to generate a D API straight from the [spec], but I quickly came to the conclusion that 
+&lt;p&gt;I originally intended to generate a D API straight from the spec, but I quickly came to the conclusion that 
 that was not a good use of my time for several reasons:&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1. The spec is a massively convoluted and annoyingly inconsistent xml document (tags in weird places ect.).
@@ -65,31 +37,47 @@ https://github.com/Rikarin/VulkanizeD/blob/master/Vulkan.d  @ 272a8e1 as a start
 
 &lt;p&gt;But first what do I mean by an idiomatic D API?&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;* functions
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;functions&lt;/p&gt;
 
-	* replacing len/ptr pairs with slices and len*/ptr pairs to return arrays
-	* wrapping call that could fail (i.e. return a VkResult) with something that throws but only if you try to use it in an invalid state
-	* const (char)* to string and const (char*)* to string[]
-	* those that return a struct through a pointer in their last arg should return that normally
-	* basically the user shouldn&#39;t have to deal with (non-handle) pointers EVER.
+    &lt;ul&gt;
+      &lt;li&gt;replacing len/ptr pairs with slices and len*/ptr pairs to return arrays&lt;/li&gt;
+      &lt;li&gt;wrapping call that could fail (i.e. return a VkResult) with something that throws but only if you try to use it in an invalid state&lt;/li&gt;
+      &lt;li&gt;const (char)* to string and const (char&lt;em&gt;)&lt;/em&gt; to string[]&lt;/li&gt;
+      &lt;li&gt;those that return a struct through a pointer in their last arg should return that normally&lt;/li&gt;
+      &lt;li&gt;basically the user shouldn’t have to deal with (non-handle) pointers EVER.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;enums&lt;/p&gt;
 
-* enums
+    &lt;ul&gt;
+      &lt;li&gt;remove redundant prefix and members&lt;/li&gt;
+      &lt;li&gt;conform to D naming conventions&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Handles&lt;/p&gt;
 
-	* remove redundant prefix and members
-	* conform to D naming conventions
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;almost all (vkEnumerateInstance{Extension,Layer}Properties are the exceptions and they should, but they don’t for whatever reason) functions take one of these as their first parameter so have them as methods&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Createinfo&lt;/p&gt;
 
-* Handles
-
-	* almost all (vkEnumerateInstance{Extension,Layer}Properties are the exceptions and they should, but they don&#39;t for whatever reason) functions take one of these as their first parameter so have them as methods
-
-	* Createinfo
-
-		* nice to use constructors
-		* nest these inside their Handle
-
-	* \_\_ctor/\_\_dtor =&amp;gt; vk*{Create,Destroy}Foo
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+        &lt;ul&gt;
+          &lt;li&gt;nice to use constructors&lt;/li&gt;
+          &lt;li&gt;nest these inside their Handle&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;__ctor/__dtor =&amp;gt; vk*{Create,Destroy}Foo&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;There is a problem with extensions methods: namely that we have to load them into a function pointer. This wouldn’t be a problem except that in vulkan you can have multiple devices, unlike gl where you can have a bunch of function pointers and populate them at load time. I suppose that you could all possible function pointers in the handle wrapper but for the sake of this article we will leave them out.&lt;/p&gt;
 
@@ -98,20 +86,20 @@ https://github.com/Rikarin/VulkanizeD/blob/master/Vulkan.d  @ 272a8e1 as a start
 &lt;p&gt;The basic method is to import the module containing the C API and iterate through each symbol and emitting it 
 as appropriate.&lt;/p&gt;
 
-&lt;p&gt;But first the imports:
-```D
-import std.stdio;		// for File &amp;amp; friends.
-import std.algorithm;	// map findSplit &amp;amp; friends startsWith &amp;amp; friends.
+&lt;p&gt;But first the imports:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-D&quot;&gt;import std.stdio;		// for File &amp;amp; friends.
+import std.algorithm;		// map findSplit &amp;amp; friends startsWith &amp;amp; friends.
 import std.traits;		// for inspecting the signatures of function and layout of structs
 import std.string;		// dealing with string
 import std.array;
 import std.conv;		// converting between enum value and name
 import std.uni;			// isUpper / toLower &amp;amp; friends 
 import std.meta;		// NoDuplicates
-import std.exception;	// assumeUnique&lt;/p&gt;
+import std.exception;		// assumeUnique
 
-&lt;p&gt;import vulkan;	//the C Vulkan API module 
-```&lt;/p&gt;
+import vulkan;	//the C Vulkan API module 
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;In D enums should be in &lt;code class=&quot;highlighter-rouge&quot;&gt;camelCase&lt;/code&gt; so a few functions for converting between that and &lt;code class=&quot;highlighter-rouge&quot;&gt;UPPERCASE_SEPARATED_WITH_UNDERSCORES&lt;/code&gt;&lt;/p&gt;
 
@@ -171,22 +159,23 @@ string upper_ToCamel(string s)
 
 &lt;p&gt;Yes this is very inefficient but we cannot reserve capacity at compile time, slow is better than broken.&lt;/p&gt;
 
-&lt;p&gt;A few globals 
-&lt;code class=&quot;highlighter-rouge&quot;&gt;D
-bool[string] emittedSymbols; //keep track of how many symbols we have not yet covered
+&lt;p&gt;A few globals&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-D&quot;&gt;bool[string] emittedSymbols; //keep track of how many symbols we have not yet covered
 enum VKL = 2; 	// length of the string &quot;Vk&quot; to differentiate between other meanings of two
 File f;			// the file we will write to
 bool _debug;	// runtime arg
-&lt;/code&gt;
-and a debugging utility function
-&lt;code class=&quot;highlighter-rouge&quot;&gt;D
-void fwrite(int line = __LINE__, Args... )(Args args)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;and a debugging utility function&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-D&quot;&gt;void fwrite(int line = __LINE__, Args... )(Args args)
 {
     if (_debug) f.write(&quot;/*&quot;,line,&quot;*/ &quot;); // saves us from having to recompile
     f.write(args);
 }
-&lt;/code&gt;
-line is evaluated in the context of the caller NOT the callee (like a C macro). This allows us to keep track of which line 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;line is evaluated in the context of the caller NOT the callee (like a C macro). This allows us to keep track of which line 
 generated what. This is a HUGE sanity saver and I wish that I had this idea earlier.&lt;/p&gt;
 
 &lt;h2 id=&quot;the-method&quot;&gt;The method&lt;/h2&gt;
@@ -204,51 +193,52 @@ generated what. This is a HUGE sanity saver and I wish that I had this idea earl
         }
     }
 &lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;select the output file and enable runtime debugging.
-Next we output the licence imports and a throw if error code is in error struct 
-```D
-    fwrite(
+Next we output the licence imports and a throw if error code is in error struct&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-D&quot;&gt;    fwrite(
 `//Autogenerated.
 //licence omitted for brevity 
 module vk;
-import vulkan;&lt;/p&gt;
+import vulkan;
 
-&lt;p&gt;import std.algorithm;
+import std.algorithm;
 import std.string;
-import std.array;&lt;/p&gt;
+import std.array;
 
-&lt;p&gt;// this is returned by the wrapped methods that call functions that return VkResult by value and
+// this is returned by the wrapped methods that call functions that return VkResult by value and
 // the actual return value as a pointer parameter
 struct ReturnResult(T)
 {
     T       t;
-    Result  result; //the error code&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;auto get()
-{
-	import std.conv : to;
-    if (result &amp;lt; 0)
-        throw new Exception(&quot;Vulcan call failed: &quot; ~ result.to!string);
-    return t;
+    Result  result; //the error code
+    
+    auto get()
+    {
+    	import std.conv : to;
+        if (result &amp;lt; 0)
+            throw new Exception(&quot;Vulcan call failed: &quot; ~ result.to!string);
+        return t;
+    }
+    alias get this;
 }
-alias get this; }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;   );
-&lt;/code&gt;``
-I feel I should explain this a bit more. ReturnResult is a struct template that holds an instance of its 
-template parameter and Result (a renamed VkResult but we’ll get to that later). &lt;code class=&quot;highlighter-rouge&quot;&gt;result&lt;/code&gt; is placed after
+`   );
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I feel I should explain this a bit more. &lt;code class=&quot;highlighter-rouge&quot;&gt;ReturnResult&lt;/code&gt; is a struct template that holds an instance of its 
+template parameter and &lt;code class=&quot;highlighter-rouge&quot;&gt;Result&lt;/code&gt; (a renamed &lt;code class=&quot;highlighter-rouge&quot;&gt;VkResult&lt;/code&gt; but we’ll get to that later). &lt;code class=&quot;highlighter-rouge&quot;&gt;result&lt;/code&gt; is placed after
 &lt;code class=&quot;highlighter-rouge&quot;&gt;t&lt;/code&gt; so a to not muck up the alignment of &lt;code class=&quot;highlighter-rouge&quot;&gt;t&lt;/code&gt; and consume more memory than is needed
 . If we go &lt;code class=&quot;highlighter-rouge&quot;&gt;auto handle  = someFuncCall(args);&lt;/code&gt; and then use &lt;code class=&quot;highlighter-rouge&quot;&gt;handle&lt;/code&gt; one of two thing will happen. If the call succeeded then &lt;code class=&quot;highlighter-rouge&quot;&gt;handle&lt;/code&gt; will effectively alias
 itself to &lt;code class=&quot;highlighter-rouge&quot;&gt;handle.t&lt;/code&gt; and will continue on and behave as if it were of type &lt;code class=&quot;highlighter-rouge&quot;&gt;T&lt;/code&gt;. However if the call 
 failed and &lt;code class=&quot;highlighter-rouge&quot;&gt;handle.result &amp;lt; 0&lt;/code&gt; i.e. an error code, and then we use it is some way e.g. call 
-one of its methods it will throw, but only then. We still have time to check &lt;code class=&quot;highlighter-rouge&quot;&gt;instance.result&lt;/code&gt; 
+one of its methods it will throw, but only then. We still have time to check &lt;code class=&quot;highlighter-rouge&quot;&gt;handle.result&lt;/code&gt; 
 for an error condition to avoid throwing if we want.&lt;/p&gt;
 
-&lt;p&gt;Next comes the main “loop” .Its actually unrolled at compile time because its a for each on a Tuple.
-&lt;code class=&quot;highlighter-rouge&quot;&gt;D
-foreach(m; __traits(allMembers, vulkan))
+&lt;p&gt;Next comes the main “loop” .Its actually unrolled at compile time because its a for each on a Tuple.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-D&quot;&gt;foreach(m; __traits(allMembers, vulkan))
 {
     if(!(m in emittedSymbols))
         emittedSymbols[m] = false;
@@ -258,9 +248,10 @@ foreach(m; __traits(allMembers, vulkan))
         if(!v) writeln(k);
     }
 }
-&lt;/code&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;__traits(allMembers, vulkan)&lt;/code&gt; yields a Tuple of strings.
-if we run this we get a list of all the symbols declared in the Vulkan API extensions an all.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;__traits(allMembers, vulkan)&lt;/code&gt; yields a Tuple of strings.
+If we run this we get a list of all the symbols declared in the Vulkan API and it’s extensions.
 (You probably want to pipe this through &lt;code class=&quot;highlighter-rouge&quot;&gt;sort&lt;/code&gt; and redirect it to a file as its rather long)
 We will use this to track our progress.&lt;/p&gt;
 
@@ -269,21 +260,23 @@ we can see that there are some symbols that we don’t care about, basically eve
 a &lt;code class=&quot;highlighter-rouge&quot;&gt;#define&lt;/code&gt; all of the function prototypes &lt;code class=&quot;highlighter-rouge&quot;&gt;PFN_vk*&lt;/code&gt; and most of the manifest constants as these are 
 still available from the C API module.&lt;/p&gt;
 
-&lt;p&gt;We can remove them from our list of things to be done
-&lt;code class=&quot;highlighter-rouge&quot;&gt;D
-if (m.startsWith(&quot;PFN_vk&quot;) || m.startsWith(&quot;VK&quot;))
+&lt;p&gt;We can remove them from our list of things to be done&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-D&quot;&gt;if (m.startsWith(&quot;PFN_vk&quot;) || m.startsWith(&quot;VK&quot;))
 {
 	emittedSymbols[m] = true;
 }
-&lt;/code&gt;
-this leaves us with enums (in the C sense), functions, structs, handles. Let’s start with the enums
-first.
-&lt;code class=&quot;highlighter-rouge&quot;&gt;D
-static if( __traits(compiles, mixin(m~&quot;.&quot;~m.camelToUpper_ ~ &quot;_MAX_ENUM&quot;)) || m.endsWith(&quot;Bits&quot;))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;this leaves us with enums (in the C sense), functions, structs, handles. Let’s start with the enums
+first.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-D&quot;&gt;static if( __traits(compiles, mixin(m~&quot;.&quot;~m.camelToUpper_ ~ &quot;_MAX_ENUM&quot;)) 
+			|| m.endsWith(&quot;Bits&quot;))
 {
 	emitEnum!m;
 }
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;the function emitEnum requires a template string argument as we will do further introspection using it.&lt;/p&gt;
 
@@ -321,23 +314,24 @@ static if( __traits(compiles, mixin(m~&quot;.&quot;~m.camelToUpper_ ~ &quot;_MAX
 }
 
 &lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;We filter out duplicate members as those are for aiding for iteration in C.
 Some ‘if’s must be static as normal runtime ‘if’s would generate invalid indices, despite the fact that 
 that branch would never be taken. And because the string is known at compile time dmd rejects it statically.&lt;/p&gt;
 
 &lt;p&gt;This leaves us with structs and functions and handles to go.&lt;/p&gt;
 
-&lt;p&gt;Back to the main loop. As I am on a 64 bit machine (i.e. version = D_LP64) all handles end with “_T”, including the non-dispatchable ones. This makes detecting them as simple as 
-&lt;code class=&quot;highlighter-rouge&quot;&gt;D
-else static if (m.endsWith(&quot;_T&quot;)) // instansiated with VK_DEFINE{_NON_DISPATCHABLE}_HANDLE
+&lt;p&gt;Back to the main loop. As I am on a 64 bit machine (i.e. version = D_LP64) all handles end with “_T”, including the non-dispatchable ones. This makes detecting them as simple as&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-D&quot;&gt;else static if (m.endsWith(&quot;_T&quot;)) // instansiated with VK_DEFINE{_NON_DISPATCHABLE}_HANDLE
 {
     emitHandle!m;
 }
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;There are several thing the we need to do here. Emit the {con,de}structors (set up and call vk*{Create,Destroy}Foo)  emit the CreateInfo and a constructor for it, loop through and find all functions that have this handle as their first parameter and emit them as methods to our wrapper. There are several things that cause problems here, the most annoying being that the names of aliased types appear as the aliaed type NOT the alias, i.e. introspecting a function that takes a size_t will give a ulong not a size_t. This means that we have to check for this EVERYWHERE, function parameter lists, struct fields, and we have to surmise the correct type or it won’t be portable (see non-dispatchable handles) or safe ( calling a function with the wrong flags type). So to aid in this we have 
-&lt;code class=&quot;highlighter-rouge&quot;&gt;D
-string fixup_T(string s)
+&lt;p&gt;There are several thing the we need to do here. Emit the {con,de}structors (set up and call vk*{Create,Destroy}Foo)  emit the CreateInfo and a constructor for it, loop through and find all functions that have this handle as their first parameter and emit them as methods to our wrapper. There are several things that cause problems here, the most annoying being that the names of aliased types appear as the aliaed type NOT the alias, i.e. introspecting a function that takes a size_t will give a ulong not a size_t. This means that we have to check for this EVERYWHERE, function parameter lists, struct fields, and we have to surmise the correct type or it won’t be portable (see non-dispatchable handles) or safe ( calling a function with the wrong flags type). So to aid in this we have&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-D&quot;&gt;string fixup_T(string s)
 {
     if(s.endsWith(&quot;_T*&quot;))
     {
@@ -354,142 +348,155 @@ string fixup_T(string s)
     else
         return s;
 }
-&lt;/code&gt; 
-to turn handles back to the portable type. Now on to emitHandle preamble 
-```D
-void emitHandle(string m)()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;to turn handles back to the portable type. Now on to emitHandle preamble&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-D&quot;&gt;void emitHandle(string m)()
 {
     emittedSymbols[m] = true;
-    if(  cannonicalName.endsWith(“KHR”) ||
-         cannonicalName.endsWith(“EXT”))
+    if(  cannonicalName.endsWith(&quot;KHR&quot;) ||
+         cannonicalName.endsWith(&quot;EXT&quot;))
     {
     	return;//ignore extensions
     }
-    enum cannonicalName = m[0 .. $-“_T”.length];
-    enum createInfoName = cannonicalName ~ “CreateInfo”;
-    emittedSymbols[createInfoName] = true; // might not exist but we don’t care
-    enum createFnName   = “vkCreate” ~ cannonicalName[VKL .. $];
-    enum destroyFnName  = “vkDestroy” ~ cannonicalName[VKL .. $];&lt;/p&gt;
+    enum cannonicalName = m[0 .. $-&quot;_T&quot;.length];
+    enum createInfoName = cannonicalName ~ &quot;CreateInfo&quot;;
+    emittedSymbols[createInfoName] = true; // might not exist but we don&#39;t care
+    enum createFnName   = &quot;vkCreate&quot; ~ cannonicalName[VKL .. $];
+    enum destroyFnName  = &quot;vkDestroy&quot; ~ cannonicalName[VKL .. $];
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fwrite(&quot;struct &quot;, cannonicalName[VKL .. $], &quot;\n{\n&quot;);
-enum createFlagsName    = cannonicalName ~ &quot;CreateFlags&quot;;
-emittedSymbols[createFlagsName] = true;//ditto
-enum mainVarName        = cannonicalName[VKL .. $].toLower();
-fwrite( cannonicalName, &quot;\t&quot;, mainVarName,&quot;;\n&quot;);
-fwrite(&quot;alias &quot;, mainVarName ,&quot; this;\n&quot;); ``` next we emit the constructor and create info by querying if the functions we will forward to exist and loop through the symbols in vulkan and emit them as a method if they are. Some handles are created from an instance or a device for those we want to not emit a constructor (as it will be a method of either Device or Instance) and hold a reference to it for the destructor. ```D static if(__traits(hasMember, vulkan,createFnName) &amp;amp;&amp;amp;
-        // if the create function of this type is a method of another type don&#39;t emit it here
-        !Parameters!(__traits(getMember, vulkan,createFnName))[0].stringof.endsWith(&quot;_T*&quot;)) {
-emitTors!m; } //build CreateInfo static if(__traits(hasMember, vulkan,createFnName)) {
-emitCreateInfo!m; } foreach(m2; __traits(allMembers, vulkan_input)) {
-static if (__traits(isStaticFunction,__traits(getMember,vulkan,m2)))
- 	{
- 	     //ignore trailing &#39;*&#39;
- 	     static if (Parameters!(__traits(getMember,vulkan_input, m2))[0].stringof[0..$-1] == m)
- 	     {
- 	         ...
- 	     }
- 	} } ```
+    fwrite(&quot;struct &quot;, cannonicalName[VKL .. $], &quot;\n{\n&quot;);
+    enum createFlagsName    = cannonicalName ~ &quot;CreateFlags&quot;;
+    emittedSymbols[createFlagsName] = true;//ditto
+    enum mainVarName        = cannonicalName[VKL .. $].toLower();
+    fwrite( cannonicalName, &quot;\t&quot;, mainVarName,&quot;;\n&quot;);
+    fwrite(&quot;alias &quot;, mainVarName ,&quot; this;\n&quot;);
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
 
-&lt;p&gt;The first dichotomy in the API methods is whether they return &lt;code class=&quot;highlighter-rouge&quot;&gt;void&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;VkResult&lt;/code&gt;. The second is whether or not they return a result through a pointer in their last argument(s). In addition to this we have to handle len(*)/ptr to array and back conversions, inspect parameters -&amp;gt; array in method -&amp;gt; len/ptr for calling. The methods that take a len*/ptr pair we need to call twice, once with null do determine the size and once again to retrieve the data. The constructors are a special case of returns VkResult and returns through a pointer. In the interest of keeping this post short I will only present the VkResult pointer returning case, the rest are left as an exercise to the reader ;). The other cases are relatively similar but the structure is the same and I haven’t yet factored out the code yet. 
-```D
-static if(!is(RT == void) &amp;amp;&amp;amp; RT.stringof == “VkResult”
-        &amp;amp;&amp;amp; (PR[$-1].stringof.canFind(“&lt;em&gt;T&lt;strong&gt;”) || (PR[$-1].stringof[$-1] == ‘*’ &amp;amp;&amp;amp; PR[$-1].stringof[$-2] != ‘T’))
-        &amp;amp;&amp;amp; !PR[$-1].stringof.canFind(“const”)
+&lt;p&gt;next we emit the constructor and create info by querying if the functions we will forward to exist and loop through the symbols in vulkan and emit them as a method if they are. Some handles are created from an instance or a device for those we want to not emit a constructor (as it will be a method of either Device or Instance) and hold a reference to it for the destructor.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-D&quot;&gt;static if(__traits(hasMember, vulkan,createFnName) &amp;amp;&amp;amp;
+            // if the create function of this type is a method of another type don&#39;t emit it here
+            !Parameters!(__traits(getMember, vulkan,createFnName))[0].stringof.endsWith(&quot;_T*&quot;))
+{
+    emitTors!m;
+}
+//build CreateInfo
+static if(__traits(hasMember, vulkan,createFnName))
+{
+    emitCreateInfo!m;
+}
+foreach(m2; __traits(allMembers, vulkan_input))
+{
+	static if (__traits(isStaticFunction,__traits(getMember,vulkan,m2)))
+ 	{
+     	     //ignore trailing &#39;*&#39;
+     	     static if (Parameters!(__traits(getMember,vulkan_input, m2))[0].stringof[0..$-1] == m)
+     	     {
+     	         ...
+     	     }
+ 	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The first dichotomy in the API methods is whether they return &lt;code class=&quot;highlighter-rouge&quot;&gt;void&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;VkResult&lt;/code&gt;. The second is whether or not they return a result through a pointer in their last argument(s). In addition to this we have to handle len(*)/ptr to array and back conversions, inspect parameters -&amp;gt; array in method -&amp;gt; len/ptr for calling. The methods that take a len*/ptr pair we need to call twice, once with null do determine the size and once again to retrieve the data. The constructors are a special case of returns VkResult and returns through a pointer. In the interest of keeping this post short I will only present the VkResult pointer returning case, the rest are left as an exercise to the reader ;). The other cases are relatively similar but the structure is the same, constrain for the case,determine the correct return type, introspect the parameters, detect arrays, output the argument and then the call to the wrapped function. But I haven’t yet factored out the code.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-D&quot;&gt;static if(!is(RT == void) &amp;amp;&amp;amp; RT.stringof == &quot;VkResult&quot;
+        &amp;amp;&amp;amp; (PR[$-1].stringof.canFind(&quot;_T**&quot;) || (PR[$-1].stringof[$-1] == &#39;*&#39; &amp;amp;&amp;amp; PR[$-1].stringof[$-2] != &#39;T&#39;))
+        &amp;amp;&amp;amp; !PR[$-1].stringof.canFind(&quot;const&quot;)
         &amp;amp;&amp;amp; PR.length &amp;gt;1)
  {
       emittedSymbols[m2] = true;
       bool returnsarray;
-      if (PI[$-2].canFind(“Count”) &amp;amp;&amp;amp; !(PI[$-1].canFind(“const”)))
+      if (PI[$-2].canFind(&quot;Count&quot;) &amp;amp;&amp;amp; !(PI[$-1].canFind(&quot;const&quot;)))
       {
             returnsarray = true;
-            fwrite(“ReturnResult!(“,PR[$-1].stringof[VKL..$-1].fixup_T, “[])”);
+            fwrite(&quot;ReturnResult!(&quot;,PR[$-1].stringof[VKL..$-1].fixup_T, &quot;[])&quot;);
       }
       else
       {
-          if (PR[$-1].stringof == “void*”) //getPipelineCacheData
+          if (PR[$-1].stringof == &quot;void*&quot;) //getPipelineCacheData
           {
                 returnsarray = true;
-                fwrite(“ReturnResult!(void[])”);
+                fwrite(&quot;ReturnResult!(void[])&quot;);
           }
-          else if (PR[$-1].stringof == “void&lt;/strong&gt;”) //mapMemory
+          else if (PR[$-1].stringof == &quot;void**&quot;) //mapMemory
           {
-               fwrite(“ReturnResult!(void*)”);
+               fwrite(&quot;ReturnResult!(void*)&quot;);
            }
-           else if (PR[$-1].stringof == “uint*”)
+           else if (PR[$-1].stringof == &quot;uint*&quot;)
            {
-                fwrite(“ReturnResult!(uint)”);
+                fwrite(&quot;ReturnResult!(uint)&quot;);
            }
            else
            {
-                  fwrite(“ReturnResult!(“,PR[$-1].stringof[VKL .. $-1].fixup_T,”)”);
+                  fwrite(&quot;ReturnResult!(&quot;,PR[$-1].stringof[VKL .. $-1].fixup_T,&quot;)&quot;);
            }
       }
-     fwrite(emitName, “(“);
+     fwrite(emitName, &quot;(&quot;);
      for(auto i=1; i &amp;lt; pits.length-1;i++)
      {
          if (returnsarray &amp;amp;&amp;amp; pits.length == 3)//handle + len + ptr
          {
-            fwrite(“)”);
+            fwrite(&quot;)&quot;);
             break;
          }
-         bool lastRound = (returnsarray || emitName.startsWith(“create”)) &amp;amp;&amp;amp; (i == pits.length-2);
-         fwrite( params[i].fixup_T, “\t”, pits[i] ,!lastRound ? “,”:”)”);
+         bool lastRound = (returnsarray || emitName.startsWith(&quot;create&quot;)) &amp;amp;&amp;amp; (i == pits.length-2);
+         fwrite( params[i].fixup_T, &quot;\t&quot;, pits[i] ,!lastRound ? &quot;,&quot;:&quot;)&quot;);
          if (lastRound)
                break;
       }
-      if (!returnsarray &amp;amp;&amp;amp; !emitName.startsWith(“create”))
+      if (!returnsarray &amp;amp;&amp;amp; !emitName.startsWith(&quot;create&quot;))
       {
-          fwrite(params[$-1].fixup_T, “\t&lt;/em&gt;”, pits[$-1],”)”);
+          fwrite(params[$-1].fixup_T, &quot;\t_&quot;, pits[$-1],&quot;)&quot;);
       }
-      fwrite(“{“);
-      fwrite(“typeof(return) _result;”);
+      fwrite(&quot;{&quot;);
+      fwrite(&quot;typeof(return) _result;&quot;);
       if (returnsarray)
       {
-           if(PR[$-1].stringof == “void*”)// for vkGetPipelineCacheData
+           if(PR[$-1].stringof == &quot;void*&quot;)// for vkGetPipelineCacheData
            {
-                  fwrite(“ulong _len;”);
+                  fwrite(&quot;ulong _len;&quot;);
            }
            else
            {
-                fwrite(“uint _len;”);
+                fwrite(&quot;uint _len;&quot;);
            }
-          fwrite(m2,”(“, mainVarName,”,”);
+          fwrite(m2,&quot;(&quot;, mainVarName,&quot;,&quot;);
           foreach(p;PI[1..$-2])
            {
-                fwrite( p,”,”);
+                fwrite( p,&quot;,&quot;);
            }
-            fwrite(“&amp;amp;_len,”);
-            fwrite(“null);”);
-            fwrite(“typeof(_result.t) _p;\n\t\t_p = new typeof(_p)(_len);”);
-            fwrite(“typeof(_p.ptr) _ptr = _p.ptr;\n”);
-            fwrite(“_result.result = cast(typeof(_result.result))”,m2,”(“, mainVarName,”,”);
+            fwrite(&quot;&amp;amp;_len,&quot;);
+            fwrite(&quot;null);&quot;);
+            fwrite(&quot;typeof(_result.t) _p;\n\t\t_p = new typeof(_p)(_len);&quot;);
+            fwrite(&quot;typeof(_p.ptr) _ptr = _p.ptr;\n&quot;);
+            fwrite(&quot;_result.result = cast(typeof(_result.result))&quot;,m2,&quot;(&quot;, mainVarName,&quot;,&quot;);
             foreach(p;PI[1..$-2])
             {
-                  fwrite(p,”,”);
+                  fwrite(p,&quot;,&quot;);
             }
-            fwrite(“&amp;amp;_len,”);&lt;/p&gt;
+            fwrite(&quot;&amp;amp;_len,&quot;);
+                        
+            fwrite(&quot;cast(&quot;,PR[$-1].stringof.fixup_T,&quot;)_ptr);&quot;);
+            fwrite(&quot;_result.t = _p;&quot;);
+       }
+       else
+       {
+            fwrite(&quot;_result.result = cast(typeof(_result.result))&quot;, m2,&quot;(&quot;);
+            fwrite( mainVarName,&quot;,&quot;);
+            foreach(p;PI[1..$-1])
+            {
+                fwrite( p,&quot;,&quot;);
+            }
+            fwrite(&quot;cast(&quot;,PR[$-1].stringof.fixup_T,&quot;)&amp;amp;_result.t);&quot;);
+       }
+       fwrite(&quot;return _result;&quot;);
+       fwrite(&quot;}\n&quot;);
+ }
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;        fwrite(&quot;cast(&quot;,PR[$-1].stringof.fixup_T,&quot;)_ptr);&quot;);
-        fwrite(&quot;_result.t = _p;&quot;);
-   }
-   else
-   {
-        fwrite(&quot;_result.result = cast(typeof(_result.result))&quot;, m2,&quot;(&quot;);
-        fwrite( mainVarName,&quot;,&quot;);
-        foreach(p;PI[1..$-1])
-        {
-            fwrite( p,&quot;,&quot;);
-        }
-        fwrite(&quot;cast(&quot;,PR[$-1].stringof.fixup_T,&quot;)&amp;amp;_result.t);&quot;);
-   }
-   fwrite(&quot;return _result;&quot;);
-   fwrite(&quot;}\n&quot;);  }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;```&lt;/p&gt;
 
 &lt;p&gt;So there you have it! Generation of a modified interface through introspection.&lt;/p&gt;
 
