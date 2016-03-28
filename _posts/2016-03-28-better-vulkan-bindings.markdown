@@ -235,7 +235,7 @@ foreach(m; __traits(allMembers, vulkan))
 ```
 
 `__traits(allMembers, vulkan)` yields a Tuple of strings.
-If we run this we get a list of all the symbols declared in the Vulkan API extensions an all.
+If we run this we get a list of all the symbols declared in the Vulkan API and it's extensions.
 (You probably want to pipe this through `sort` and redirect it to a file as its rather long)
 We will use this to track our progress.
 
