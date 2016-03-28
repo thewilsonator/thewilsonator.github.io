@@ -67,14 +67,14 @@ But first the imports:
 
 ```D
 import std.stdio;		// for File & friends.
-import std.algorithm;	// map findSplit & friends startsWith & friends.
+import std.algorithm;		// map findSplit & friends startsWith & friends.
 import std.traits;		// for inspecting the signatures of function and layout of structs
 import std.string;		// dealing with string
 import std.array;
 import std.conv;		// converting between enum value and name
 import std.uni;			// isUpper / toLower & friends 
 import std.meta;		// NoDuplicates
-import std.exception;	// assumeUnique
+import std.exception;		// assumeUnique
 
 import vulkan;	//the C Vulkan API module 
 ```
