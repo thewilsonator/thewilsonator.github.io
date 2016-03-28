@@ -53,7 +53,7 @@ But first what do I mean by an idiomatic D API?
 			* nice to use constructors
 			* nest these inside their Handle
 
-		* \_\_ctor/\_\_dtor => vk*{Create,Destroy}Foo
+		* __ctor/__dtor => vk*{Create,Destroy}Foo
 		
 There is a problem with extensions methods: namely that we have to load them into a function pointer. This wouldn't be a problem except that in vulkan you can have multiple devices, unlike gl where you can have a bunch of function pointers and populate them at load time. I suppose that you could all possible function pointers in the handle wrapper but for the sake of this article we will leave them out.
 
