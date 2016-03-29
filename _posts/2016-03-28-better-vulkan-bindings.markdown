@@ -26,7 +26,7 @@ https://github.com/Rikarin/VulkanizeD/blob/master/Vulkan.d  @ 272a8e1 as a start
 TL;DR turn 
 
 ```C++
-struct VkInstanceCreateInfo ici;
+VkInstanceCreateInfo ici;
 ici.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
 ici.pNext = null;
 ici.flags = 0;
