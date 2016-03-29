@@ -254,12 +254,12 @@ Next comes the main "loop" .Its actually unrolled at compile time because its a 
 ```D
 foreach(m; __traits(allMembers, vulkan))
 {
-    if(!(m in emittedSymbols))
-        emittedSymbols[m] = false;
+	if(!(m in emittedSymbols))
+    	emittedSymbols[m] = false;
     //other code here
 	foreach(k,v;emittedSymbols)
   	{
-        if(!v) writeln(k);
+    	if(!v) writeln(k);
     }
 }
 ```
