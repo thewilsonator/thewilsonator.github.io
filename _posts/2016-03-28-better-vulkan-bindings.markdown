@@ -375,12 +375,13 @@ to turn handles back to the portable type. Now on to emitHandle preamble
 void emitHandle(string m)()
 {
     emittedSymbols[m] = true;
+    enum cannonicalName = m[0 .. $-"_T".length];
     if(  cannonicalName.endsWith("KHR") ||
          cannonicalName.endsWith("EXT"))
     {
     	return;//ignore extensions
     }
-    enum cannonicalName = m[0 .. $-"_T".length];
+
     enum createInfoName = cannonicalName ~ "CreateInfo";
     emittedSymbols[createInfoName] = true; // might not exist but we don't care
     enum createFnName   = "vkCreate" ~ cannonicalName[VKL .. $];
