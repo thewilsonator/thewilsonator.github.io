@@ -56,7 +56,7 @@ But first what do I mean by an idiomatic D API?
 		
 There is a problem with extensions methods: namely that we have to load them into a function pointer. This wouldn't be a problem except that in vulkan you can have multiple devices, unlike gl where you can have a bunch of function pointers and populate them at load time. I suppose that you could all possible function pointers in the handle wrapper but for the sake of this article we will leave them out.
 
-The basic method
+The preamble code
 --------------
 
 The basic method is to import the module containing the C API and iterate through each symbol and emitting it 
@@ -142,7 +142,7 @@ A few globals
 ```D
 bool[string] emittedSymbols; //keep track of how many symbols we have not yet covered
 enum VKL = 2; 	// length of the string "Vk" to differentiate between other meanings of two
-File f;			// the file we will write to
+File f;		// the file we will write to
 bool _debug;	// runtime arg
 ```
 and a debugging utility function
