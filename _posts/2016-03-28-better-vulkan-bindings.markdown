@@ -25,7 +25,7 @@ https://github.com/Rikarin/VulkanizeD/blob/master/Vulkan.d  @ 272a8e1 as a start
 
 TL;DR turn 
 
-```C++
+```D
 VkInstanceCreateInfo ici;
 ici.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
 ici.pNext = null;
@@ -38,10 +38,10 @@ ici.ppEnabledExtensionNames = null;
 VkInstance instance;
 VkResult err = VkCreateInstance(&ici,null,&instance);
 if(err < 0) bail_out();
-unsigned len;
+uint len;
 vkEnumeratePhysicalDevices(instance,&len,null);
-VkPhysicalDevice* pdevs = new VkPhysicalDevice(len);
-vkEnumeratePhysicalDevices(instance,len,pdevs);
+auto pdevs = new VkPhysicalDevice[](len);
+vkEnumeratePhysicalDevices(instance,len,pdevs.ptr);
 ```
 
 into
