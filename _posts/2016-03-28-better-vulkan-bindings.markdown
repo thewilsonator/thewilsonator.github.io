@@ -489,6 +489,82 @@ static if(!is(RT == void) && RT.stringof == "VkResult"
 
 ```
 
+The generated code looks like 
+
+```D
+struct Instance
+{
+	VkInstance	instance;
+	alias instance this;
+	const(VkAllocationCallbacks*) ac;
+
+	this(
+	const ref CreateInfo createInfo,
+	const(VkAllocationCallbacks*)	pAllocator
+	)
+	{
+		vkCreateInstance(&createInfo.ci,pAllocator,&instance);
+		ac = pAllocator;
+	}
+	~this()
+	{
+		vkDestroyInstance(instance,ac);
+	}
+	static struct CreateInfo
+	{
+		VkInstanceCreateInfo	ci;
+		alias ci this;
+		this(
+			const(VkApplicationInfo*)		_pApplicationInfo,
+			string[]		_enabledLayers,
+			string[]		_enabledExtensions
+			, uint 		_flags =0
+			)
+		{
+		auto __enabledLayers= _enabledLayers.map!(s=> s.toStringz).array;
+		auto __enabledExtensions= _enabledExtensions.map!(s=> s.toStringz).array;
+		ci = typeof(ci)(
+		cast(typeof(ci.sType))StructureType.eInstanceCreateInfo,
+		null,
+		0,
+		_pApplicationInfo,
+		cast(uint)__enabledLayes.length,
+		__enabledLayers.ptr,
+		cast(uint)__enabledExtensions.length,
+		__enabledExtensions.ptr);
+		}
+
+	}
+
+	ReturnResult!(PhysicalDevice[])	physicalDevices()
+	{
+		typeof(return) _result;
+		uint _len;
+		vkEnumeratePhysicalDevices(instance,
+			&_len,
+			null);
+		typeof(_result.t) _p;
+							_p = new typeof(_p)(_len);
+		typeof(_p.ptr) _ptr = _p.ptr;
+
+		_result.result = cast(typeof(_result.result))vkEnumeratePhysicalDevices(instance,
+		&_len,
+		cast(VkPhysicalDevice*)_ptr);
+		_result.t = _p;
+		return _result;
+	}
+	...
+}
+```
+
+and we can use it like this
+
+```D
+auto ici = Instance.CreateInfo(null,[],[]);
+auto instance = Instance(ici,null);
+auto pdevs = instance.physicalDevices();
+```
+
 So there you have it! Generation of a modified interface through introspection.
 
 I would like to thank Adam Ruppe and Ali Cehreli and the D forumites for their help in debugging and suggestions. I would also like to thank Rikarin for providing the translation of the C header.
