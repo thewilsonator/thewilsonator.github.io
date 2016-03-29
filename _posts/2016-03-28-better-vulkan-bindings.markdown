@@ -23,6 +23,32 @@ that was not a good use of my time for several reasons:
 So I decided to start with a D translation of the C API taking care of all the C-isms. I used 
 https://github.com/Rikarin/VulkanizeD/blob/master/Vulkan.d  @ 272a8e1 as a starting point and used the power that D offers in introspective and meta-programming to turn the C API into an idiomatic D API.
 
+TL;DR turn 
+```C++
+struct VkInstanceCreateInfo ici;
+ici.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
+ici.pNext = null;
+ici.flags = 0;
+ici.pApplicationInfo = null;
+ici.enabledLayerCount = 0;
+ici.ppEnabledLayerNames = null;
+ici.enabledExtensionsCount = 0;
+ici.ppEnabledExtensionNames = null;
+VkInstance instance;
+VkResult err = VkCreateInstance(&ici,null,&instance);
+if(err < 0) bail_out();
+unsigned len;
+vkEnumeratePhysicalDevices(instance,&len,null);
+VkPhysicalDevice* pdevs = new VkPhysicalDevice(len);
+vkEnumeratePhysicalDevices(instance,len,pdevs);
+```
+into
+```D
+auto ici = Instance.CreateInfo(null,[],[]);
+auto instance = Instance(ici,null);
+auto pdevs = instance.physicalDevices();
+```
+
 Goals
 -----
 
