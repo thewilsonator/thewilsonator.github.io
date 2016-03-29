@@ -11,15 +11,14 @@ An adventure in introspective and meta-programming in D
 Intro
 -----
 
-With the release of the new graphics API Vulkan from Khronos I thought it would good to try and wrap my head around it. Unfortunately Vulkan is a C API, and is therefore not type safe (although waaaay better than OpenGL) and rather clunky to use. However as Vulkan is a C API, it is easily accessible in D, so we can make a 
-better API that forwards with no overhead to the C API in a type safe way that is  much cleaner and nicer to use way.
+With the release of the new graphics API Vulkan from Khronos I thought it would good to try and wrap my head around it. Unfortunately Vulkan is a C API, and is therefore not type safe (although waaaay better than OpenGL) and rather clunky to use. However as Vulkan is a C API, it is easily accessible in D as they share a common memory model, so we can make a better API that forwards with no overhead to the C API in a type safe way that is much cleaner and nicer to use way.
 
 I originally intended to generate a D API straight from the spec, but I quickly came to the conclusion that 
 that was not a good use of my time for several reasons:
 
-	1. The spec is a massively convoluted and annoyingly inconsistent xml document (tags in weird places ect.).
-	2. It is very C oriented ( full of preprocessor directives, typedefs, C-style array declarations, ...) and ,
-	3. I would have to make reference to the free functions anyway...
+1. The spec is a massively convoluted and annoyingly inconsistent xml document (tags in weird places ect.).
+2. It is very C oriented ( full of preprocessor directives, typedefs, C-style array declarations, ...) and ,
+3. I would have to make reference to the free functions anyway...
 
 So I decided to start with a D translation of the C API taking care of all the C-isms. I used 
 https://github.com/Rikarin/VulkanizeD/blob/master/Vulkan.d  @ 272a8e1 as a starting point and used the power that D offers in introspective and meta-programming to turn the C API into an idiomatic D API.
@@ -27,7 +26,7 @@ https://github.com/Rikarin/VulkanizeD/blob/master/Vulkan.d  @ 272a8e1 as a start
 Goals
 -----
 
-While automatically generating 100% of it is nice in theory, in order to minimise the number of special cases (and there are a lot) we will be doing some manual adjustments at the end as well as spitting the generated code through [dfmt]. In my code I included some rudimentary indentation code for the ease of debugging which I will leave out for here.
+While automatically generating 100% of it is nice in theory, in order to minimise the number of special cases (and there are a lot) we will be doing some manual adjustments at the end as well as spitting the generated code through [dfmt](https://github.com/Hackerpilot/dfmt) to make the code readable. In my code I included some rudimentary indentation code for the ease of debugging which I will leave out for here.
 
 But first what do I mean by an idiomatic D API?
 
