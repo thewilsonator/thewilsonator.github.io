@@ -48,7 +48,7 @@ auto ici = Instance.CreateInfo(null,[],[]);
 auto instance = Instance(ici,null);
 auto pdevs = instance.physicalDevices();
 ```
-
+with the power that D offers.
 Goals
 -----
 
