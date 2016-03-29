@@ -249,7 +249,7 @@ failed and `handle.result < 0` i.e. an error code, and then we use it is some wa
 one of its methods it will throw, but only then. We still have time to check `handle.result` 
 for an error condition to avoid throwing if we want.
 
-Next comes the main "loop" .Its actually unrolled at compile time because its a for each on a Tuple.
+Next comes the main "loop". Its actually unrolled at compile time because its a for each on a Tuple.
 
 ```D
 foreach(m; __traits(allMembers, vulkan))
