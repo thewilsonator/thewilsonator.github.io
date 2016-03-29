@@ -53,6 +53,7 @@ auto pdevs = instance.physicalDevices();
 ```
 
 with the power that D offers.
+
 Goals
 -----
 
