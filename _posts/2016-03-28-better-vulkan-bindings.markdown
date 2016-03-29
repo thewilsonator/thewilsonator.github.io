@@ -260,7 +260,7 @@ foreach(m; __traits(allMembers, vulkan))
 	foreach(k,v;emittedSymbols)
   	{
     	if(!v) writeln(k);
-    }
+	}
 }
 ```
 
