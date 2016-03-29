@@ -598,4 +598,4 @@ auto pdevs = instance.physicalDevices();
 
 So there you have it! Generation of a modified interface through introspection.
 
-I would like to thank Adam Ruppe and Ali Cehreli and the D forumites for their help in debugging and suggestions. I would also like to thank Rikarin for providing the translation of the C header.
+I would like to thank Adam Ruppe, Ali Cehreli, Jack Stouffer and the D forumites for their help in debugging and suggestions. I would also like to thank Rikarin for providing the translation of the C header.
