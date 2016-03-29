@@ -256,7 +256,7 @@ foreach(m; __traits(allMembers, vulkan))
 {
 	if(!(m in emittedSymbols))
     	emittedSymbols[m] = false;
-    //other code here
+	//other code here
 	foreach(k,v;emittedSymbols)
   	{
     	if(!v) writeln(k);
