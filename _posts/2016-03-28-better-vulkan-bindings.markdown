@@ -24,6 +24,7 @@ So I decided to start with a D translation of the C API taking care of all the C
 https://github.com/Rikarin/VulkanizeD/blob/master/Vulkan.d  @ 272a8e1 as a starting point and used the power that D offers in introspective and meta-programming to turn the C API into an idiomatic D API.
 
 TL;DR turn 
+
 ```C++
 struct VkInstanceCreateInfo ici;
 ici.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
@@ -48,6 +49,7 @@ auto ici = Instance.CreateInfo(null,[],[]);
 auto instance = Instance(ici,null);
 auto pdevs = instance.physicalDevices();
 ```
+
 with the power that D offers.
 Goals
 -----
