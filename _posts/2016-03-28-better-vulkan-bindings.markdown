@@ -43,7 +43,9 @@ vkEnumeratePhysicalDevices(instance,&len,null);
 VkPhysicalDevice* pdevs = new VkPhysicalDevice(len);
 vkEnumeratePhysicalDevices(instance,len,pdevs);
 ```
+
 into
+
 ```D
 auto ici = Instance.CreateInfo(null,[],[]);
 auto instance = Instance(ici,null);
