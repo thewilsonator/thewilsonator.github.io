@@ -10,7 +10,7 @@ Intro
 With the release of the new graphics API Vulkan from Khronos I thought it would good to try and wrap my head around it. Unfortunately Vulkan is a C API, and is therefore not type safe (although waaaay better than OpenGL) and rather clunky to use. However as Vulkan is a C API, it is easily accessible in D, so we can make a 
 better API that forwards with no overhead to the C API in a type safe way that is  much cleaner and nicer to use way.
 
-I originally intended to generate a D API straight from the [spec], but I quickly came to the conclusion that 
+I originally intended to generate a D API straight from the spec, but I quickly came to the conclusion that 
 that was not a good use of my time for several reasons:
 
 	1. The spec is a massively convoluted and annoyingly inconsistent xml document (tags in weird places ect.).
@@ -23,7 +23,7 @@ https://github.com/Rikarin/VulkanizeD/blob/master/Vulkan.d  @ 272a8e1 as a start
 Goals
 -----
 
-While automatically generating 100% of it is nice in theory, in order to minimise the number of special cases (and there are a lot) we will be doing some manual adjustments at the end as well as spitting the generated code through [dfmt]. In my code I included some rudimentary indentation code for the ease of debugging which I will leave out for here.
+While automatically generating 100% of it is nice in theory, in order to minimise the number of special cases (and there are a lot) we will be doing some manual adjustments at the end as well as spitting the generated code through dfmt. In my code I included some rudimentary indentation code for the ease of debugging which I will leave out for here.
 
 But first what do I mean by an idiomatic D API?
 
@@ -32,7 +32,7 @@ But first what do I mean by an idiomatic D API?
 
 		* replacing len/ptr pairs with slices and len*/ptr pairs to return arrays
 		* wrapping call that could fail (i.e. return a VkResult) with something that throws but only if you try to use it in an invalid state
-		* const (char)* to string and const (char*)* to string[]
+		* const (char)* to string and const (char*)* to string\[\]
 		* those that return a struct through a pointer in their last arg should return that normally
 		* basically the user shouldn't have to deal with (non-handle) pointers EVER.
 
@@ -100,9 +100,9 @@ string camelToUpper_(string s)
 }
 string upper_ToCamel(string s)
 {
-    char[] ret;
+    char\[\] ret;
     bool saw_;
-    foreach(c; s[VKL ..$])
+    foreach(c; s\[VKL ..$\])
     {
         if(saw_)
         {
@@ -118,15 +118,15 @@ string upper_ToCamel(string s)
     }
     if (s.endsWith("KHR"))
     {
-        ret[$-3] = 'K';
-        ret[$-2] = 'H';
-        ret[$-1] = 'R';
+        ret\[$-3\] = 'K';
+        ret\[$-2\] = 'H';
+        ret\[$-1\] = 'R';
     }  
     else if (s.endsWith("EXT"))
     {
-        ret[$-3] = 'E';
-        ret[$-2] = 'X';
-        ret[$-1] = 'T';
+        ret\[$-3\] = 'E';
+        ret\[$-2\] = 'X';
+        ret\[$-1\] = 'T';
     }
     return assumeUnique(ret);
 }
@@ -468,4 +468,3 @@ static if(!is(RT == void) && RT.stringof == "VkResult"
 
 So there you have it! Generation of a modified interface through introspection.
 
-I would like to thank Adam Ruppe and Ali Çehreli and the D forumites for their help in debugging and suggestions. I would also like to thank Rikarin for providing the translation of the C header.
