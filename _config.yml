@@ -6,12 +6,12 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: Not Mushy
+title: Everything but Slushware
 #email: your-email@domain.com
 description: > # this means to ignore newlines until "baseurl:"
   A blog on hardware, software and hard-wetware
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://yourdomain.com" # the base hostname & protocol for your site
+#url: "http://yourdomain.com" # the base hostname & protocol for your site
 #twitter_username: jekyllrb
 github_username:  thewilsonator
 
